@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="slate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FARAN — RE-ENTERING PRIME // Full-Stack &amp; AI Systems</title>
+  <meta name="description" content="Portfolio of Faran. Full-stack engineering, sovereign AI systems, and interactive local Ollama chatbot.">
+  
+  <!-- Modern Refined Typography: Nevan RUS (@font-face) + Syne & Unbounded & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- ========================================== -->
+  <!-- 1. CINEMATIC SPLASH SCREEN: RE-ENTERING PRIME -->
+  <!-- ========================================== -->
+  <div id="splashScreen" class="splash-screen" role="dialog" aria-modal="true" aria-label="System Initializing">
+    <div class="splash-backdrop"></div>
+    <div class="splash-content">
+      <div class="splash-badge">
+        <span class="pulse-dot"></span> PRIME SYSTEMS &bull; 2026
+      </div>
+      <h1 class="splash-title">
+        RE-ENTERING PRIME
+      </h1>
+      <p class="splash-subtitle">
+        FARAN &bull; FULL-STACK &amp; SOVEREIGN AI ARCHITECT
+      </p>
+
+      <div class="splash-loader-wrapper">
+        <div class="splash-bar-outer">
+          <div id="splashProgress" class="splash-bar-inner"></div>
+        </div>
+        <div class="splash-metrics">
+          <span id="splashStatusText">Initializing runtime...</span>
+          <span id="splashPercent">0%</span>
+        </div>
+      </div>
+
+      <button id="skipSplashBtn" class="splash-skip-btn" type="button">
+        ENTER NOW &rarr;
+      </button>
+    </div>
+  </div>
+
+  <!-- Background Ambience -->
+  <div class="ambient-glow glow-top" id="ambientGlowTop"></div>
+  <div class="ambient-glow glow-bottom" id="ambientGlowBottom"></div>
+  <div class="background-grid"></div>
+
+  <!-- ========================================== -->
+  <!-- 2. NAVIGATION BAR                         -->
+  <!-- ========================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" aria-label="Faran Prime Home">
+        <div class="brand-crest">
+          <span class="crest-core"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">FARAN</span>
+          <span class="brand-tag">PRIME_ERA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Overview</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Stack</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#chatbot" class="nav-link nav-highlight">AI Chatbot</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Controls & Status -->
+      <div class="header-actions">
+        <!-- Live Ollama Status Indicator -->
+        <div class="ollama-status-pill" id="ollamaStatusPill" title="Ollama Local Status: Checking...">
+          <span class="status-beacon" id="ollamaBeacon"></span>
+          <span class="status-label" id="ollamaStatusLabel">Ollama: Standby</span>
+        </div>
+
+        <!-- Theme Toggle Switcher -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle Color Theme" title="Switch Theme">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+      <div class="mobile-nav-links">
+        <a href="#hero" class="mobile-link">Overview</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Stack</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#chatbot" class="mobile-link">AI Chatbot</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <div class="drawer-status">Local Engine: <span id="mobileOllamaStatus">Checking...</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================== -->
+    <!-- 3. HERO SECTION & 3D INTERACTIVE CANVAS    -->
+    <!-- ========================================== -->
+    <section id="hero" class="hero-section">
+      <div class="section-container hero-container">
+        <div class="hero-content reveal-on-scroll is-visible">
+          <div class="hero-status-tag">
+            <span class="pulse-dot"></span>
+            <span>PRIME ERA &bull; 2026 ARCHITECTURE</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Architecting intelligent systems.<br>
+            <span class="text-gradient">Re-entering prime.</span>
+          </h1>
+
+          <p class="hero-desc">
+            I'm <strong>Faran</strong> — a full-stack engineer and AI systems developer. Returning to peak engineering velocity with zero bloat, sovereign on-prem LLMs, and high-performance web systems. The interactive assistant below runs locally via Ollama with zero external data leakage.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#chatbot" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Launch AI Co-Pilot</span>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span>View Projects</span>
+              <span class="btn-arrow">&rarr;</span>
+            </a>
+          </div>
+
+          <!-- Metrics Strip -->
+          <div class="hero-metrics-grid">
+            <div class="metric-card">
+              <div class="metric-val text-gradient">100%</div>
+              <div class="metric-label">Local Sovereign AI</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">&lt; 15ms</div>
+              <div class="metric-label">Gateway Overhead</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">20 RPM</div>
+              <div class="metric-label">Hardware Rate Limiter</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val text-gradient">0 KB</div>
+              <div class="metric-label">Third-Party Egress</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual: 3D Interactive Canvas + Node Telemetry Card -->
+        <div class="hero-visual reveal-on-scroll is-visible">
+          <!-- 3D Interactive Geometry Canvas -->
+          <div class="hero-3d-canvas-container" aria-hidden="true">
+            <canvas id="hero3DCanvas" class="hero-3d-canvas" width="440" height="440"></canvas>
+          </div>
+
+          <!-- 3D Tilt Card -->
+          <div class="prime-node-card tilt-card">
+            <div class="card-shine"></div>
+            <div class="node-card-header">
+              <span class="node-title">NODE TELEMETRY &bull; LOCAL_01</span>
+              <span class="node-live-tag">
+                <span class="status-beacon online"></span> ACTIVE
+              </span>
+            </div>
+            <div class="node-telemetry-list">
+              <div class="telemetry-row">
+                <span class="t-key">RUNTIME</span>
+                <span class="t-val">SOVEREIGN_NODE</span>
+              </div>
+              <div class="telemetry-row">
+                <span class="t-key">LLM ENGINE</span>
+                <span class="t-val">OLLAMA (PORT 11434)</span>
+              </div>
+              <div class="telemetry-row">
+                <span class="t-key">RATE LIMIT</span>
+                <span class="t-val">20 REQ / MIN</span>
+              </div>
+              <div class="telemetry-row">
+                <span class="t-key">DATA EGRESS</span>
+                <span class="t-val">0.00 KB (ON-PREM)</span>
+              </div>
+              <div class="telemetry-row">
+                <span class="t-key">SYSTEM STATE</span>
+                <span class="t-val">PEAK VELOCITY</span>
+              </div>
+            </div>
+            <div class="node-card-footer">
+              REST GATEWAY: READY &bull; PERSISTENCE: ON
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. ABOUT SECTION                           -->
+    <!-- ========================================== -->
+    <section id="about" class="section-padded about-section">
+      <div class="section-container">
+        <div class="section-heading reveal-on-scroll">
+          <span class="heading-badge">01 &bull; PERSPECTIVE</span>
+          <h2 class="section-title">ENGINEERING PRINCIPLES</h2>
+          <p class="section-subtext">The discipline defining this era: clarity over noise, sovereign data control, and relentless product execution.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glass-card tilt-card reveal-on-scroll stagger-1">
+            <div class="card-shine"></div>
+            <div class="about-card-icon">⚡</div>
+            <h3>Sovereign Intelligence</h3>
+            <p>Moving beyond third-party API dependencies by orchestrating on-premise LLMs (Llama 3, DeepSeek, Mistral) via Ollama for zero-latency, private computation.</p>
+          </div>
+
+          <div class="about-card glass-card tilt-card reveal-on-scroll stagger-2">
+            <div class="card-shine"></div>
+            <div class="about-card-icon">💎</div>
+            <h3>Minimalist Craft</h3>
+            <p>Building resilient, lightweight web applications that load instantaneously. Clean semantic markup, vanilla CSS architecture, and zero redundant framework bloat.</p>
+          </div>
+
+          <div class="about-card glass-card tilt-card reveal-on-scroll stagger-3">
+            <div class="card-shine"></div>
+            <div class="about-card-icon">🛡️</div>
+            <h3>Hardened Systems</h3>
+            <p>Protecting compute resources with sliding-window rate limiters, session persistence, automatic retry protocols, and multi-runtime compatibility.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. ARSENAL & SKILLS SECTION                -->
+    <!-- ========================================== -->
+    <section id="skills" class="section-padded skills-section">
+      <div class="section-container">
+        <div class="section-heading reveal-on-scroll">
+          <span class="heading-badge">02 &bull; TECHNICAL STACK</span>
+          <h2 class="section-title">CORE CAPABILITIES</h2>
+          <p class="section-subtext">Focused technologies across autonomous AI, backend architecture, and modern interfaces.</p>
+        </div>
+
+        <div class="skills-wrapper">
+          <div class="skill-category glass-card tilt-card reveal-on-scroll stagger-1">
+            <div class="card-shine"></div>
+            <div class="cat-header">
+              <div class="cat-icon">AI &amp; MACHINE INTELLIGENCE</div>
+              <h3>Sovereign Core</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag highlighted">Ollama API</span>
+              <span class="skill-tag highlighted">Llama 3.x</span>
+              <span class="skill-tag highlighted">DeepSeek-R1</span>
+              <span class="skill-tag">Mistral</span>
+              <span class="skill-tag">Local Embeddings</span>
+              <span class="skill-tag">Agentic Workflows</span>
+              <span class="skill-tag">Context Window Tuning</span>
+              <span class="skill-tag">Structured Output</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card tilt-card reveal-on-scroll stagger-2">
+            <div class="card-shine"></div>
+            <div class="cat-header">
+              <div class="cat-icon">BACKEND &amp; DISTRIBUTED</div>
+              <h3>Systems Architecture</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag highlighted">Node.js</span>
+              <span class="skill-tag highlighted">Python</span>
+              <span class="skill-tag highlighted">Rate Limiting</span>
+              <span class="skill-tag">Express / FastAPI</span>
+              <span class="skill-tag">REST &amp; SSE</span>
+              <span class="skill-tag">Session Stores</span>
+              <span class="skill-tag">CORS Security</span>
+              <span class="skill-tag">In-Memory Buffers</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-card tilt-card reveal-on-scroll stagger-3">
+            <div class="card-shine"></div>
+            <div class="cat-header">
+              <div class="cat-icon">USER EXPERIENCE &amp; INTERFACE</div>
+              <h3>Frontend Craft</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag highlighted">Modern Vanilla JS</span>
+              <span class="skill-tag highlighted">Custom CSS Systems</span>
+              <span class="skill-tag highlighted">Responsive Layouts</span>
+              <span class="skill-tag">Glassmorphism</span>
+              <span class="skill-tag">Touch Optimization</span>
+              <span class="skill-tag">Markdown Parsing</span>
+              <span class="skill-tag">Micro-Interactions</span>
+              <span class="skill-tag">ARIA Accessibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. PROJECTS SHOWCASE SECTION               -->
+    <!-- ========================================== -->
+    <section id="projects" class="section-padded projects-section">
+      <div class="section-container">
+        <div class="section-heading reveal-on-scroll">
+          <span class="heading-badge">03 &bull; REPOSITORY</span>
+          <h2 class="section-title">SELECTED ARCHITECTURES</h2>
+          <p class="section-subtext">Featured full-stack platforms and infrastructure implementations.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card glass-card tilt-card reveal-on-scroll stagger-1">
+            <div class="card-shine"></div>
+            <div class="project-badge">ACTIVE APPLICATION</div>
+            <div class="project-header">
+              <h3 class="project-title">PrimeChat AI Suite</h3>
+              <p class="project-summary">A full-stack, offline-first conversational AI interface integrated directly with Ollama. Features hardware rate limiting, persistent session management, and zero cloud data egress.</p>
+            </div>
+            <div class="project-features">
+              <span>&bull; Rate-limited API (20 RPM)</span>
+              <span>&bull; Session persistence</span>
+              <span>&bull; Dynamic model switcher</span>
+            </div>
+            <div class="project-tech-stack">
+              <span class="p-tech">Ollama</span>
+              <span class="p-tech">Node.js</span>
+              <span class="p-tech">Vanilla JS</span>
+              <span class="p-tech">CSS Tokens</span>
+            </div>
+            <div class="project-footer">
+              <a href="#chatbot" class="p-link">Interact Below &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card glass-card tilt-card reveal-on-scroll stagger-2">
+            <div class="card-shine"></div>
+            <div class="project-badge">SYSTEM SECURITY</div>
+            <div class="project-header">
+              <h3 class="project-title">AegisGuard Rate Limiter</h3>
+              <p class="project-summary">A sliding-window rate-limiting middleware developed to safeguard local inference hardware and REST endpoints from exhaustion attacks with sub-millisecond overhead.</p>
+            </div>
+            <div class="project-features">
+              <span>&bull; Sliding-window tracking</span>
+              <span>&bull; Automatic Retry-After</span>
+              <span>&bull; Zero dependency footprint</span>
+            </div>
+            <div class="project-tech-stack">
+              <span class="p-tech">Node.js</span>
+              <span class="p-tech">Python</span>
+              <span class="p-tech">REST</span>
+            </div>
+            <div class="project-footer">
+              <span class="p-status">Active in Prime Backend</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card glass-card tilt-card reveal-on-scroll stagger-3">
+            <div class="card-shine"></div>
+            <div class="project-badge">LOCAL LLM TOOLS</div>
+            <div class="project-header">
+              <h3 class="project-title">NeuroNexus Local Bridge</h3>
+              <p class="project-summary">An automated bridge for Ollama that auto-detects installed models, verifies port connectivity, and manages seamless fallback during high concurrent workloads.</p>
+            </div>
+            <div class="project-features">
+              <span>&bull; Dynamic model detection</span>
+              <span>&bull; Health probes</span>
+              <span>&bull; Hardware protection</span>
+            </div>
+            <div class="project-tech-stack">
+              <span class="p-tech">Python</span>
+              <span class="p-tech">Ollama API</span>
+              <span class="p-tech">AsyncIO</span>
+            </div>
+            <div class="project-footer">
+              <span class="p-status">Integrated into Platform</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 8. INTERACTIVE TERMINAL & CONTACT          -->
+    <!-- ========================================== -->
+    <section id="contact" class="section-padded contact-section">
+      <div class="section-container">
+        <div class="section-heading reveal-on-scroll">
+          <span class="heading-badge">05 &bull; TRANSMISSION</span>
+          <h2 class="section-title">COMMUNICATION &amp; CONSOLE</h2>
+          <p class="section-subtext">Direct contact channels and interactive system console.</p>
+        </div>
+
+        <div class="contact-terminal-grid reveal-on-scroll">
+          <!-- Terminal -->
+          <div class="terminal-card glass-card">
+            <div class="terminal-bar">
+              <div class="term-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="term-title">faran@node: ~</span>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+              <div class="term-line">Prime Console v2.6. Type <span class="term-highlight">help</span> to view commands.</div>
+              <div class="term-line">Status: <span class="term-success">OPERATIONAL // ALL SYSTEMS VERIFIED</span></div>
+            </div>
+            <div class="terminal-input-row">
+              <span class="term-prompt">&gt;</span>
+              <input type="text" id="terminalInput" class="term-input" placeholder="try 'skills', 'ollama', or 'about'..." autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="contact-info-card glass-card tilt-card">
+            <div class="card-shine"></div>
+            <div>
+              <h3>Direct Inquiries</h3>
+              <p>Available for high-impact AI systems, architecture consulting, and full-stack platforms.</p>
+              
+              <div class="contact-links">
+                <div class="contact-item">
+                  <span class="contact-icon">✉</span>
+                  <div>
+                    <div class="c-label">Email</div>
+                    <a href="mailto:contact@faran.prime" class="c-val">farandev.business@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <span class="contact-icon">⌘</span>
+                  <div>
+                    <div class="c-label">GitHub</div>
+                    <a href="https://github.com" target="_blank" rel="noreferrer" class="c-val">https://github.com/Faran-Portfolio</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <span class="contact-icon">◈</span>
+                  <div>
+                    <div class="c-label">LinkedIn</div>
+                    <a href="https://instagram.com" target="_blank" rel="noreferrer" class="c-val">https://www.instagram.com/vyrix_error/?hl=en</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-notice-box">
+              <span class="notice-badge">SOVEREIGN ARCHITECTURE</span>
+              <p>All AI operations remain on-premise. Zero tracking cookies or third-party analytical pipelines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 9. FOOTER                                  -->
+  <!-- ========================================== -->
+  <footer class="site-footer">
+    <div class="section-container footer-container">
+      <div class="footer-left">
+        <div class="brand-name">FARAN <span class="text-gradient">PRIME</span></div>
+        <p>Full-Stack &amp; Sovereign AI Engineering &bull; Prime Era 2026</p>
+      </div>
+      <div class="footer-right">
+        <span>Precision Engineering &bull; 100% Local Inference</span>
+        <a href="#hero" class="back-to-top">&uarr; Back to Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Quick-Chat FAB -->
+  <button id="floatingChatFab" class="floating-chat-fab" type="button" aria-label="Quick Access AI Chatbot" title="Launch Prime AI Co-Pilot">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
